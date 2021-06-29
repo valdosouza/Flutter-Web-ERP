@@ -1,0 +1,15 @@
+/.dart_tool
+/.flutter-plugins
+/.flutter-plugins-dependencies
+/.idea
+/.metadata
+/.packages
+/.vscode
+/android
+/build
+/debug.log
+/ios
+/node_modules
+/web
+/windows
+/winuwp
