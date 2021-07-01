@@ -1,14 +1,15 @@
 import 'package:flutter_modular/flutter_modular.dart';
-
-import 'modules/home/home_module.dart';
+import 'package:frontend/app/core/presenter/spash_screen_page.dart';
 
 class AppModule extends Module {
+  // Provide a list of dependencies to inject into your project
   @override
-  final List<Bind> binds = [];
+  List<Bind> get binds => [];
 
+  // Provide all the routes for your module
   @override
-  final List<ModularRoute> routes = [
-    ModuleRoute(Modular.initialRoute, module: HomeModule()),
-  ];
-
+  @override
+  List<ModularRoute> get routes => [
+        ChildRoute('/', child: (_, args) => SplashScreenPage()),
+      ];
 }
