@@ -10,6 +10,7 @@ class AuthPage extends StatefulWidget {
 }
 
 class AuthPageState extends State<AuthPage> {
+  // ignore: close_sinks
   final AuthBloc bloc = Modular.get();
 
   @override
@@ -19,6 +20,7 @@ class AuthPageState extends State<AuthPage> {
         title: Text(widget.title),
       ),
       body: Column(
+        // ignore: prefer_const_literals_to_create_immutables
         children: <Widget>[],
       ),
     );

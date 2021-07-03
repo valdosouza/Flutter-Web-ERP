@@ -21,15 +21,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ignore: prefer_const_constructors
       appBar: AppBar(title: Text("Home")),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           FloatingActionButton(
+            // ignore: prefer_const_constructors
             child: Icon(Icons.remove),
             onPressed: _counterCubit.decrement,
           ),
           FloatingActionButton(
+            // ignore: prefer_const_constructors
             child: Icon(Icons.add),
             onPressed: _counterCubit.increment,
           ),
@@ -39,6 +42,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // ignore: prefer_const_constructors
             Text("Button Tapped:"),
             BlocBuilder<CounterCubit, int>(
               bloc: _counterCubit,
