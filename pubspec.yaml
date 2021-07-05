@@ -28,8 +28,8 @@ dependencies:
   get_it: ^6.0.0 
   # create modules
   flutter_modular: ^3.3.0-nullsafety.3
-  bloc: 7.0.0-nullsafety.3
   # Bloc for state management
+  bloc: 7.0.0-nullsafety.3
   flutter_bloc: 7.0.0-nullsafety.3
   injectable: ^1.2.0
   # Value equality

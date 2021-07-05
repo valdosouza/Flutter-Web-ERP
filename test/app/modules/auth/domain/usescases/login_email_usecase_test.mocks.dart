@@ -6,8 +6,7 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:frontend/app/core/error/failures.dart' as _i5;
-import 'package:frontend/app/modules/auth/domain/entities/auth_entity.dart'
-    as _i6;
+import 'package:frontend/app/modules/auth/data/model/auth_model.dart' as _i6;
 import 'package:frontend/app/modules/auth/domain/repositories/auth_repository.dart'
     as _i3;
 import 'package:mockito/mockito.dart' as _i1;
@@ -32,12 +31,12 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.AuthEntity>> loginEmail(
+  _i4.Future<_i2.Either<_i5.Failure, _i6.AuthModel>> loginEmail(
           {String? username, String? password}) =>
       (super.noSuchMethod(
-          Invocation.method(
-              #loginEmail, [], {#username: username, #password: password}),
-          returnValue: Future<_i2.Either<_i5.Failure, _i6.AuthEntity>>.value(
-              _FakeEither<_i5.Failure, _i6.AuthEntity>())) as _i4
-          .Future<_i2.Either<_i5.Failure, _i6.AuthEntity>>);
+              Invocation.method(
+                  #loginEmail, [], {#username: username, #password: password}),
+              returnValue: Future<_i2.Either<_i5.Failure, _i6.AuthModel>>.value(
+                  _FakeEither<_i5.Failure, _i6.AuthModel>()))
+          as _i4.Future<_i2.Either<_i5.Failure, _i6.AuthModel>>);
 }
