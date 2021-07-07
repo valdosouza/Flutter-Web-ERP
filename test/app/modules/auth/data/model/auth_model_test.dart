@@ -22,9 +22,6 @@ void main() {
     () async {
       // arrange
       final String jsonString = fixture('auth.json');
-      //const String jsonString =
-      //    '{"id": "1","username": "valdo@setes.com.br","password": "12345","jwt": "StringJWT"}';
-      //const Map<String, AuthModel> jsonMap = json.decode(jsonString);
       final jsonMap = json.decode(jsonString) as Map<String, dynamic>;
       // act
 

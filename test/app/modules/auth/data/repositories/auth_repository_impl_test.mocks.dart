@@ -2,11 +2,16 @@
 // in frontend/test/app/modules/auth/data/repositories/auth_repository_impl_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i4;
+import 'dart:async' as _i7;
 
+import 'package:dartz/dartz.dart' as _i4;
+import 'package:frontend/app/core/error/failures.dart' as _i8;
+import 'package:frontend/app/core/plataform/network_info.dart' as _i3;
 import 'package:frontend/app/modules/auth/data/datasource/remote/ownapi/auth_datasource.dart'
-    as _i3;
-import 'package:frontend/app/modules/auth/data/model/auth_model.dart' as _i2;
+    as _i2;
+import 'package:frontend/app/modules/auth/data/model/auth_model.dart' as _i5;
+import 'package:frontend/app/modules/auth/data/repositories/auth_repository_impl.dart'
+    as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: avoid_redundant_argument_values
@@ -15,22 +20,73 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
 
-class _FakeAuthModel extends _i1.Fake implements _i2.AuthModel {}
+class _FakeAuthDatasource extends _i1.Fake implements _i2.AuthDatasource {}
+
+class _FakeNetworkInfo extends _i1.Fake implements _i3.NetworkInfo {}
+
+class _FakeEither<L, R> extends _i1.Fake implements _i4.Either<L, R> {
+  @override
+  String toString() => super.toString();
+}
+
+class _FakeAuthModel extends _i1.Fake implements _i5.AuthModel {}
+
+/// A class which mocks [AuthRepositoryImpl].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAuthRepositoryImpl extends _i1.Mock
+    implements _i6.AuthRepositoryImpl {
+  MockAuthRepositoryImpl() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.AuthDatasource get datasource =>
+      (super.noSuchMethod(Invocation.getter(#datasource),
+          returnValue: _FakeAuthDatasource()) as _i2.AuthDatasource);
+  @override
+  _i3.NetworkInfo get networkinfo =>
+      (super.noSuchMethod(Invocation.getter(#networkinfo),
+          returnValue: _FakeNetworkInfo()) as _i3.NetworkInfo);
+  @override
+  _i7.Future<_i4.Either<_i8.Failure, _i5.AuthModel>> loginEmail(
+          {String? username, String? password}) =>
+      (super.noSuchMethod(
+              Invocation.method(
+                  #loginEmail, [], {#username: username, #password: password}),
+              returnValue: Future<_i4.Either<_i8.Failure, _i5.AuthModel>>.value(
+                  _FakeEither<_i8.Failure, _i5.AuthModel>()))
+          as _i7.Future<_i4.Either<_i8.Failure, _i5.AuthModel>>);
+}
 
 /// A class which mocks [AuthDatasource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthDatasource extends _i1.Mock implements _i3.AuthDatasource {
+class MockAuthDatasource extends _i1.Mock implements _i2.AuthDatasource {
   MockAuthDatasource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.AuthModel> getAuthentication(
+  _i7.Future<_i5.AuthModel> getAuthentication(
           {String? username, String? password}) =>
       (super.noSuchMethod(
               Invocation.method(#getAuthentication, [],
                   {#username: username, #password: password}),
-              returnValue: Future<_i2.AuthModel>.value(_FakeAuthModel()))
-          as _i4.Future<_i2.AuthModel>);
+              returnValue: Future<_i5.AuthModel>.value(_FakeAuthModel()))
+          as _i7.Future<_i5.AuthModel>);
+}
+
+/// A class which mocks [NetworkInfo].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNetworkInfo extends _i1.Mock implements _i3.NetworkInfo {
+  MockNetworkInfo() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.Future<bool> get isConnect =>
+      (super.noSuchMethod(Invocation.getter(#isConnect),
+          returnValue: Future<bool>.value(false)) as _i7.Future<bool>);
 }
