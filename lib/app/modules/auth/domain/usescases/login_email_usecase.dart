@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:frontend/app/core/error/failures.dart';
 import 'package:frontend/app/core/usecase/usecase.dart';
+import 'package:frontend/app/modules/auth/data/model/auth_model.dart';
 import 'package:frontend/app/modules/auth/domain/entities/auth_entity.dart';
 import 'package:frontend/app/modules/auth/domain/repositories/auth_repository.dart';
 
@@ -13,16 +14,16 @@ class LoginEmailUseCase implements UseCase<AuthEntity, Params> {
   @override
   Future<Either<Failure, AuthEntity>> call(Params params) async {
     return repository.loginEmail(
-        username: params.username, password: params.password);
+        username: params.authModel.username,
+        password: params.authModel.password);
   }
 }
 
 class Params extends Equatable {
-  final String username;
-  final String password;
+  final AuthModel authModel;
 
-  const Params({required this.username, required this.password});
+  const Params(this.authModel);
 
   @override
-  List<Object?> get props => [username, password];
+  List<Object?> get props => [authModel];
 }
