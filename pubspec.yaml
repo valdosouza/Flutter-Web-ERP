@@ -23,14 +23,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  triple: ^1.0.2
   # Service locator
   get_it: ^6.0.0 
   # create modules
   flutter_modular: ^3.3.0-nullsafety.3
-  # Bloc for state management
-  bloc: 7.0.0-nullsafety.3
-  flutter_bloc: 7.0.0-nullsafety.3
+  # preferences
+  shared_preferences: ^2.0.6
+  #bloc
+  bloc: ^7.0.0
   injectable: ^1.2.0
   # Value equality
   equatable: ^2.0.3
@@ -40,6 +40,8 @@ dependencies:
   data_connection_checker: ^0.3.4
   meta: ^1.3.0
   http: ^0.13.3
+  flutter_bloc: ^7.0.1
+  
 
 dev_dependencies:
   flutter_test:

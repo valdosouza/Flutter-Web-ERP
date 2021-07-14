@@ -1,9 +1,8 @@
 import 'dart:convert';
-
-import 'package:frontend/app/core/shared/constants.dart';
-import 'package:http/http.dart' as http;
 import 'package:frontend/app/core/error/exceptions.dart';
+import 'package:frontend/app/core/shared/constants.dart';
 import 'package:frontend/app/modules/auth/data/model/auth_model.dart';
+import 'package:http/http.dart' as http;
 
 /// Calls the https://www.api.gestaosetes.com.br/users/authenticate/ endpoint.
 ///

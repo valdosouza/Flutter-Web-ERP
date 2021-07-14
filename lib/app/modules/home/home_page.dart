@@ -1,60 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
-import 'counter_cubit.dart';
-
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  final CounterCubit _counterCubit = Modular.get();
-
-  @override
-  void dispose() {
-    _counterCubit.close();
-    super.dispose();
-  }
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // ignore: prefer_const_constructors
-      appBar: AppBar(title: Text("Home")),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          FloatingActionButton(
-            // ignore: prefer_const_constructors
-            child: Icon(Icons.remove),
-            onPressed: _counterCubit.decrement,
-          ),
-          FloatingActionButton(
-            // ignore: prefer_const_constructors
-            child: Icon(Icons.add),
-            onPressed: _counterCubit.increment,
-          ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // ignore: prefer_const_constructors
-            Text("Button Tapped:"),
-            BlocBuilder<CounterCubit, int>(
-              bloc: _counterCubit,
-              builder: (context, count) {
-                return Text(
-                  "$count",
-                  style: Theme.of(context).textTheme.headline3,
-                );
-              },
-            ),
-          ],
-        ),
+    return const Material(
+      child: Center(
+        child: Text('Home'),
       ),
     );
   }
