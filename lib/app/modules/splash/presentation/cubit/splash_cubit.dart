@@ -7,6 +7,7 @@ class SplashCubit extends Cubit<SplashState> {
 
   Future<void> checkLogged() async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
-    emit(SplashState.logged(logged: sp.containsKey('token')));
+    final bool result = sp.containsKey('token');
+    emit(SplashState.logged(logged: result));
   }
 }
