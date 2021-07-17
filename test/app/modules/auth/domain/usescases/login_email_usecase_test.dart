@@ -18,6 +18,7 @@ void main() {
     usecase = LoginEmailUseCase(repository: mockAuthRepository);
   });
   const tAuthModel = AuthModel(
+    auth: true,
     id: 0,
     username: 'testEmail@Email',
     password: '123',
@@ -25,6 +26,7 @@ void main() {
   );
   tParams = Params(
     AuthModel(
+      auth: true,
       id: 0,
       username: tAuthModel.username,
       password: tAuthModel.password,

@@ -25,11 +25,12 @@ class AuthDatasourceImpl implements AuthDatasource {
       },
       body: jsonEncode(
         <String, String>{
-          'username': "${username}",
+          'email': "${username}",
           'password': "${password}",
         },
       ),
     );
+    print(response.body);
     if (response.statusCode == 200) {
       final jsonMap = json.decode(response.body) as Map<String, dynamic>;
       return AuthModel.fromJson(jsonMap);

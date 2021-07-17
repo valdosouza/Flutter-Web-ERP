@@ -23,6 +23,7 @@ void main() {
   });
 
   const tAuthModel = AuthModel(
+    auth: true,
     id: 0,
     username: 'valdo@setes.com.br',
     password: '827CCB0EEA8A706C4C34A16891F84E7B',
