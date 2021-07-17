@@ -2,8 +2,6 @@
 
 Enterprise Resource Planning - ERP It will contain several modules of independent work that will be grouped by branches of activity and thus made available to the customer.
   
-  # Service locator
-  get_it: ^6.0.0 
   # create modules
   flutter_modular: ^3.3.0-nullsafety.3  
   # Bloc for state management
