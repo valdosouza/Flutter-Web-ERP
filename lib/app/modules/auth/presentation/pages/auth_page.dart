@@ -1,90 +1,106 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:frontend/app/core/shared/theme.dart';
+import 'package:frontend/app/modules/auth/presentation/auth_cubit/auth_cubit.dart';
 
 // ignore: must_be_immutable
 class AuthPage extends StatelessWidget {
-  final bool _rememberMe = false;
-  //final _emailController = TextEditingController();
-  //final _passwordController = TextEditingController();
+  TextEditingController loginController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   final _form = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                //height: double.infinity,
-                //width: double.infinity,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xFF73AEF5),
-                      Color(0xFF61A4F1),
-                      Color(0xFF478DE0),
-                      Color(0xFF398AE5),
-                    ],
-                    stops: [0.1, 0.4, 0.7, 0.9],
-                  ),
+      body: BlocProvider(
+        create: (context) => Modular.get<AuthCubit>(),
+        child: Stack(
+          children: <Widget>[
+            Container(
+              //height: double.infinity,
+              //width: double.infinity,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xFF73AEF5),
+                    Color(0xFF61A4F1),
+                    Color(0xFF478DE0),
+                    Color(0xFF398AE5),
+                  ],
+                  stops: [0.1, 0.4, 0.7, 0.9],
                 ),
               ),
-              Center(
-                child: Container(
-                  width: 400,
-                  child: _buildForm(context),
-                ),
+            ),
+            Center(
+              child: Container(
+                width: 400,
+                child: _buildForm(context),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 
   Widget _buildForm(BuildContext context) {
-    return Form(
-      key: _form,
-      child: Container(
-        height: double.infinity,
-        //width: double.infinity,
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 40.0,
-            vertical: 120.0,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(
-                "images/logo_setes.png",
-                width: 450,
-                height: 140,
-                //fit: BoxFit.fill,
+    return BlocConsumer<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is AuthErrorState) {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("Sending Message"),
+          ));
+        }
+
+        if (state is AuthSuccessState) {
+          Modular.to.popAndPushNamed('/home');
+        }
+      },
+      builder: (context, state) {
+        return Form(
+          key: _form,
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 30.0,
+                vertical: 120.0,
               ),
-              const SizedBox(height: 30.0),
-              _buildEmailTF(),
-              const SizedBox(
-                height: 30.0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset(
+                    "images/logo_setes.png",
+                    width: 450,
+                    height: 140,
+                    //fit: BoxFit.fill,
+                  ),
+                  if (state is AuthLoadingState)
+                    const CircularProgressIndicator(),
+                  const SizedBox(height: 30.0),
+                  _buildEmail(),
+                  const SizedBox(
+                    height: 30.0,
+                  ),
+                  _buildPassword(),
+                  _buildRememberMeCheckbox(),
+                  _buildLoginBtn(context),
+                ],
               ),
-              _buildPasswordTF(),
-              _buildRememberMeCheckbox(),
-              _buildLoginBtn(context),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
-  Widget _buildEmailTF() {
+  Widget _buildEmail() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -98,6 +114,7 @@ class AuthPage extends StatelessWidget {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextFormField(
+            controller: loginController,
             keyboardType: TextInputType.emailAddress,
             autofocus: true,
             textInputAction: TextInputAction.done,
@@ -121,7 +138,7 @@ class AuthPage extends StatelessWidget {
     );
   }
 
-  Widget _buildPasswordTF() {
+  Widget _buildPassword() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -135,6 +152,7 @@ class AuthPage extends StatelessWidget {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextFormField(
+            controller: passwordController,
             keyboardType: TextInputType.visiblePassword,
             textInputAction: TextInputAction.done,
             obscureText: true,
@@ -163,14 +181,11 @@ class AuthPage extends StatelessWidget {
       height: 40.0,
       child: Row(
         children: <Widget>[
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.white),
-            child: Checkbox(
-              value: _rememberMe,
-              checkColor: Colors.green,
-              activeColor: Colors.white,
-              onChanged: (value) {},
-            ),
+          Checkbox(
+            value: false,
+            checkColor: Colors.green,
+            activeColor: Colors.white,
+            onChanged: (value) {},
           ),
           const Text(
             'Confio neste dispositivo. Manter conectado',
@@ -192,7 +207,10 @@ class AuthPage extends StatelessWidget {
             borderRadius: BorderRadius.circular(18.0),
           ),
         ),
-        onPressed: () => {},
+        onPressed: () => context.read<AuthCubit>().login(
+              loginController.text,
+              passwordController.text,
+            ),
         child: const Text(
           'LOGIN',
           style: TextStyle(
