@@ -14,7 +14,7 @@ abstract class AuthDatasource {
 
 class AuthDatasourceImpl implements AuthDatasource {
   final _baseUrl = '${Constants.baseApiUrl}/users/authenticate/';
-  late final http.Client client;
+  final client = http.Client();
   @override
   Future<AuthModel> getAuthentication(
       {required String username, required String password}) async {

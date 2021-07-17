@@ -16,6 +16,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, AuthModel>> loginEmail(
       {required String username, required String password}) async {
     try {
+      print("AuthRepositoryImpl");
       final result = await datasource.getAuthentication(
           username: username, password: password);
       print(result);
