@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:frontend/app/modules/home/home_page.dart';
+import 'package:frontend/app/modules/home/presentation/pages/home_page.dart';
 
 class HomeModule extends Module {
   @override

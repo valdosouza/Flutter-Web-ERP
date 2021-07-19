@@ -30,7 +30,6 @@ class AuthDatasourceImpl implements AuthDatasource {
         },
       ),
     );
-    print(response.body);
     if (response.statusCode == 200) {
       final jsonMap = json.decode(response.body) as Map<String, dynamic>;
       return AuthModel.fromJson(jsonMap);
