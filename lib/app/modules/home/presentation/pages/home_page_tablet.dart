@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/app/core/component/drawer_component.dart';
-import 'package:frontend/app/modules/home/presentation/component/content_tablet.dart';
 import 'package:frontend/app/modules/home/presentation/component/items_menus.dart';
+import 'package:frontend/app/modules/home/presentation/content/content_tablet.dart';
 
 class HomePageTablet extends StatelessWidget {
   @override
