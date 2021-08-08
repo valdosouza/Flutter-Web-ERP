@@ -2,20 +2,20 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:frontend/app/modules/auth/data/model/auth_model.dart';
 import 'package:frontend/app/modules/auth/domain/repositories/auth_repository.dart';
-import 'package:frontend/app/modules/auth/domain/usescases/login_email_usecase.dart';
+import 'package:frontend/app/modules/auth/domain/usescases/login_email.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'login_email_usecase_test.mocks.dart';
 
 @GenerateMocks([AuthRepository])
 void main() {
-  late LoginEmailUseCase usecase;
+  late LoginEmail usecase;
   late MockAuthRepository mockAuthRepository;
 
   late Params tParams;
   setUp(() {
     mockAuthRepository = MockAuthRepository();
-    usecase = LoginEmailUseCase(repository: mockAuthRepository);
+    usecase = LoginEmail(repository: mockAuthRepository);
   });
   const tAuthModel = AuthModel(
     auth: true,
