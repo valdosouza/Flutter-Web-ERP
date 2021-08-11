@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class DrawerComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -39,20 +41,7 @@ class DrawerComponent extends StatelessWidget {
           ),
           itemMenuDraw(
               Icons.home, 'Dashbord', () => {Navigator.pushNamed(context, '')}),
-          itemMenuDraw(Icons.home_repair_service_rounded, 'Sistema',
-              () => {Navigator.pushNamed(context, '')}),
-          itemMenuDraw(Icons.exposure_rounded, 'Vendas',
-              () => {Navigator.pushNamed(context, '')}),
-          itemMenuDraw(Icons.supervised_user_circle_rounded, 'Compras',
-              () => {Navigator.pushNamed(context, '')}),
-          itemMenuDraw(
-              Icons.star, 'Estoque', () => {Navigator.pushNamed(context, '')}),
-          itemMenuDraw(
-              Icons.refresh, 'Caixa', () => {Navigator.pushNamed(context, '')}),
-          itemMenuDraw(Icons.settings, 'Bancário',
-              () => {Navigator.pushNamed(context, '')}),
-          itemMenuDraw(
-              Icons.close, 'Sair', () => {Navigator.pushNamed(context, '')}),
+          itemMenuDraw(Icons.close, 'Sair', () => {logout(context)}),
         ],
       ),
     );
@@ -83,5 +72,12 @@ class DrawerComponent extends StatelessWidget {
             )),
       ),
     );
+  }
+
+  Future<void> logout(BuildContext context) async {
+    final SharedPreferences sp = await SharedPreferences.getInstance();
+
+    await sp.setString('token', '');
+    await Navigator.of(context).pushNamed("/");
   }
 }

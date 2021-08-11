@@ -20,18 +20,14 @@ void main() {
   const tAuthModel = AuthModel(
     auth: true,
     id: 0,
+    institution: 0,
     username: 'testEmail@Email',
     password: '123',
     jwt: 'StringJWT',
   );
   tParams = Params(
-    AuthModel(
-      auth: true,
-      id: 0,
-      username: tAuthModel.username,
-      password: tAuthModel.password,
-      jwt: '',
-    ),
+    username: tAuthModel.username,
+    password: tAuthModel.password,
   );
   test(
     'should get JWT auth  API',

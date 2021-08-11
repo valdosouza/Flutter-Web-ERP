@@ -1,20 +1,26 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:frontend/app/core/error/exceptions.dart';
 import 'package:frontend/app/core/error/failures.dart';
 import 'package:frontend/app/core/usecase/usecase.dart';
-import 'package:frontend/app/modules/auth/domain/entities/auth_entity.dart';
+import 'package:frontend/app/modules/auth/data/model/auth_model.dart';
 import 'package:frontend/app/modules/auth/domain/repositories/auth_repository.dart';
 
-class LoginEmail implements UseCase<AuthEntity, Params> {
+class LoginEmail implements UseCase<AuthModel, Params> {
   final AuthRepository repository;
 
   LoginEmail({required this.repository});
 
   @override
-  Future<Either<Failure, AuthEntity>> call(Params params) async {
-    print("Entrei no Use cAse");
-    return repository.loginEmail(
-        username: params.username, password: params.password);
+  Future<Either<Failure, AuthModel>> call(Params params) async {
+    try {
+      final logemail = await repository.loginEmail(
+          username: params.username, password: params.password);
+
+      return logemail;
+    } on ServerException {
+      return Left(ServerFailure());
+    }
   }
 }
 

@@ -7,9 +7,7 @@ import 'package:frontend/responsive.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // It provide us the width and height
     return Responsive(
-      // Let's work on our mobile part
       mobile: HomePageMobile(),
       tablet: HomePageTablet(),
       desktop: HomePageDesktop(),

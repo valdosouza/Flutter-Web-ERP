@@ -5,13 +5,13 @@ import 'package:frontend/app/core/shared/theme.dart';
 
 class SalesPaymentType extends StatelessWidget {
   final String paymentType, svgSrc;
-  final double saleValues;
+  final String saleValues;
 
   const SalesPaymentType({
-    Key? key,
     required this.svgSrc,
     required this.paymentType,
     required this.saleValues,
+    Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {

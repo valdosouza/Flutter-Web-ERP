@@ -1,13 +1,20 @@
 import 'package:flutter/cupertino.dart';
+import 'package:frontend/app/modules/home/data/model/home_sales_payment_type_model.dart';
 import 'package:frontend/app/modules/home/presentation/component/sales_payment_type.dart';
 
-class ListSalesPaymentType extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const SalesPaymentType(
-      svgSrc: "./images/icons/Documents.svg",
-      paymentType: "DINHEIRO",
-      saleValues: 100.0,
-    );
-  }
+Widget listSalesPaymentType(
+    BuildContext context, List<HomeSalesPaymentTypeModel> list) {
+  return Container(
+    height: 300,
+    child: ListView.builder(
+      itemCount: list.length,
+      itemBuilder: (context, index) {
+        return SalesPaymentType(
+          svgSrc: "../images/icons/Documents.svg",
+          paymentType: list[index].paymentType.toString(),
+          saleValues: list[index].totalValue.toStringAsFixed(2),
+        );
+      },
+    ),
+  );
 }

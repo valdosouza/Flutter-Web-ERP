@@ -7,9 +7,8 @@ class SplashCubit extends Cubit<SplashState> {
 
   Future<void> checkLogged() async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
-    //Exemplo para logout - Comentar depois para fazer o login
-    final bool result = sp.getString('token') == '';
-    print(result.toString());
+    //await sp.setString('token', '');
+    final bool result = sp.getString('token') != '';
     emit(SplashState.logged(logged: result));
   }
 }

@@ -29,6 +29,11 @@ class HomeSuccessState extends HomeState {
   List<Object> get props => [];
 }
 
+class HomeLogoutState extends HomeState {
+  @override
+  List<Object> get props => [];
+}
+
 class HomeErrorState extends HomeState {
   final String error;
 

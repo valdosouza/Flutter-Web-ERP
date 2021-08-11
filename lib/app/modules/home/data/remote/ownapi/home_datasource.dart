@@ -1,5 +1,7 @@
 import 'dart:convert';
+
 import 'package:frontend/app/core/error/exceptions.dart';
+
 import 'package:frontend/app/core/shared/constants.dart';
 
 import 'package:frontend/app/modules/home/data/model/home_sales_payment_type_model.dart';
@@ -17,12 +19,13 @@ abstract class HomeDatasource {
 class HomeDatasourceImpl implements HomeDatasource {
   final _baseUrl = '${Constants.baseApiUrl}/financial/getClosed/';
   final client = http.Client();
-  List<HomeSalesPaymentTypeModel> homeSalesPaymentTypesModel = [];
+  //List<HomeSalesPaymentTypeModel> homeSalesPaymentTypesModel = [];
   @override
   Future<List<HomeSalesPaymentTypeModel>> getFinancialClosed(
       {required String initialDate, required String finalDate}) async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
     final institution = sp.getString('institution');
+
     final response = await client.post(
       Uri.parse(_baseUrl),
       headers: <String, String>{
@@ -30,20 +33,23 @@ class HomeDatasourceImpl implements HomeDatasource {
       },
       body: jsonEncode(
         <String, String>{
-          'initialDate': "${initialDate}",
-          'finalDate': "${finalDate}",
-          'institution': "${institution}",
+          'initialDate': "$initialDate",
+          'finalDate': "$finalDate",
+          'institution': "$institution",
         },
       ),
     );
+
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      return homeSalesPaymentTypesModel = (data as List).map((json) {
+      final List<HomeSalesPaymentTypeModel> homeSalesPaymentTypesModel =
+          (data as List).map((json) {
         return HomeSalesPaymentTypeModel(
           paymentType: json['paymentType'].toString(),
           totalValue: double.parse(json['totalValue'].toString()),
         );
       }).toList();
+      return homeSalesPaymentTypesModel;
     } else {
       throw ServerException();
     }

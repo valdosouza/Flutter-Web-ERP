@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 import 'package:dartz/dartz.dart';
+import 'package:frontend/app/core/error/exceptions.dart';
 
 import 'package:frontend/app/core/error/failures.dart';
 import 'package:frontend/app/modules/auth/data/datasource/remote/ownapi/auth_datasource.dart';
@@ -19,13 +20,13 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, AuthModel>> loginEmail(
       {required String username, required String password}) async {
     try {
-      final result = await datasource.getAuthentication(
+      final logemail = await datasource.getAuthentication(
           username: username,
           password: md5.convert(utf8.encode(password)).toString());
 
-      return Right(result);
-    } on Exception {
-      return Left(throw UnimplementedError());
+      return Right(logemail);
+    } on ServerException {
+      return Left(ServerFailure());
     }
   }
 }
