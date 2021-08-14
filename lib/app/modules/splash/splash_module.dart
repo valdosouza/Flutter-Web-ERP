@@ -5,7 +5,9 @@ import 'package:frontend/app/modules/splash/presentation/pages/splash_page.dart'
 class SplashModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind((i) => SplashCubit()),
+        Bind(
+          (i) => SplashCubit(),
+        ),
       ];
   @override
   final List<ModularRoute> routes = [

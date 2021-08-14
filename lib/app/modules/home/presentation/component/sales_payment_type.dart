@@ -29,15 +29,22 @@ class SalesPaymentType extends StatelessWidget {
       ),
       child: Row(
         children: [
-          SizedBox(
-            height: 20,
-            width: 20,
-            child: SvgPicture.asset(svgSrc),
+          Expanded(
+            flex: 1,
+            child: SizedBox(
+              height: 20,
+              width: 20,
+              child: SvgPicture.asset(svgSrc),
+            ),
           ),
           Expanded(
+            flex: 5,
             child: Text(paymentType),
           ),
-          Text("R\$ $saleValues "),
+          Expanded(
+            flex: 2,
+            child: Text("R\$ $saleValues "),
+          ),
         ],
       ),
     );

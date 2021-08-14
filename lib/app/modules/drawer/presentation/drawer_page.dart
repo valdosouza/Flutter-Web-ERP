@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:frontend/app/modules/drawer/presentation/cubit/drawer_cubit.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
+class DrawerPage extends StatelessWidget {
+  final _drawerCubit = Modular.get<DrawerCubit>();
 
-class DrawerComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -41,7 +43,7 @@ class DrawerComponent extends StatelessWidget {
           ),
           itemMenuDraw(
               Icons.home, 'Dashbord', () => {Navigator.pushNamed(context, '')}),
-          itemMenuDraw(Icons.close, 'Sair', () => {logout(context)}),
+          itemLogout(Icons.close, 'Sair'),
         ],
       ),
     );
@@ -55,6 +57,7 @@ class DrawerComponent extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border(bottom: BorderSide(color: Colors.grey.shade400))),
         child: InkWell(
+            onTap: () => ontap,
             splashColor: Colors.orangeAccent,
             child: Container(
               height: 50,
@@ -74,10 +77,35 @@ class DrawerComponent extends StatelessWidget {
     );
   }
 
-  Future<void> logout(BuildContext context) async {
-    final SharedPreferences sp = await SharedPreferences.getInstance();
+  Widget itemLogout(IconData icon, String text) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.grey.shade400))),
+        child: InkWell(
+            onTap: () async {
+              print("Saindo - Logout");
 
-    await sp.setString('token', '');
-    await Navigator.of(context).pushNamed("/");
+              await _drawerCubit.logOut();
+              await Modular.to.popAndPushNamed('/auth');
+            },
+            splashColor: Colors.orangeAccent,
+            child: Container(
+              height: 50,
+              child: Row(
+                children: <Widget>[
+                  Icon(icon),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        text,
+                        style: const TextStyle(fontSize: 16.0),
+                      ))
+                ],
+              ),
+            )),
+      ),
+    );
   }
 }

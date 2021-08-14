@@ -13,7 +13,9 @@ class ContentMobile extends StatelessWidget {
       create: (context) => Modular.get<HomeCubit>()
         ..getFinancialClosed('2020-04-01', '2020-04-01'),
       child: Center(
-        child: Container(width: 400, child: _build(context)),
+        child: Container(
+          child: _build(context),
+        ),
       ),
     );
   }

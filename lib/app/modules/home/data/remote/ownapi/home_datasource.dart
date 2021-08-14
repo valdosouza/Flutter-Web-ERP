@@ -24,7 +24,7 @@ class HomeDatasourceImpl implements HomeDatasource {
   Future<List<HomeSalesPaymentTypeModel>> getFinancialClosed(
       {required String initialDate, required String finalDate}) async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
-    final institution = sp.getString('institution');
+    //final institution = sp.getString('institution');
 
     final response = await client.post(
       Uri.parse(_baseUrl),
@@ -35,7 +35,7 @@ class HomeDatasourceImpl implements HomeDatasource {
         <String, String>{
           'initialDate': "$initialDate",
           'finalDate': "$finalDate",
-          'institution': "$institution",
+          'institution': "1223",
         },
       ),
     );

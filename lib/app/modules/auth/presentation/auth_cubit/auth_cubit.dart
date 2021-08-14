@@ -20,12 +20,17 @@ class AuthCubit extends Cubit<AuthState> {
 
       final result =
           await _loginEmail(Params(username: login, password: password));
-      final AuthModel authModel = (result as Right).value as AuthModel;
-      final SharedPreferences sp = await SharedPreferences.getInstance();
-      await sp.setString('token', authModel.auth.toString());
-      await sp.setString('institution', authModel.institution.toString());
 
-      emit(AuthSuccessState());
+      final AuthModel authModel = (result as Right).value as AuthModel;
+      final bool auth = authModel.jwt.compareTo("") != 0;
+      if (auth) {
+        final SharedPreferences sp = await SharedPreferences.getInstance();
+        await sp.setString('token', authModel.jwt);
+        await sp.setString('institution', authModel.institution.toString());
+        emit(AuthSuccessState());
+      } else {
+        emit(const AuthErrorState('Login ou senha inválido'));
+      }
     } on UserNotFoundException {
       emit(const AuthErrorState('Login ou senha inválido'));
     } catch (e) {

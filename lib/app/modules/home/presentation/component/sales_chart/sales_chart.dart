@@ -1,9 +1,39 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/app/core/shared/theme.dart';
+
 import 'package:frontend/app/modules/home/data/model/home_sales_payment_type_model.dart';
 
 Widget salesChart(BuildContext context, List<HomeSalesPaymentTypeModel> list) {
+  List<PieChartSectionData> paiChartSelectionDatas = [];
+  double totalValue;
+
+  final List colors = [
+    kPrimaryColor,
+    const Color(0xFF26E5FF),
+    const Color(0xFFFFCF26),
+    const Color(0xFFEE2727),
+    kPrimaryColor.withOpacity(0.1),
+  ];
+
+  totalValue = 0;
+  int contador = 0;
+
+  for (HomeSalesPaymentTypeModel p in list) {
+    totalValue = totalValue + p.totalValue;
+    if (contador < 5) {
+      paiChartSelectionDatas.add(
+        PieChartSectionData(
+          color: colors[contador] as Color,
+          value: p.totalValue,
+          showTitle: false,
+          radius: 25,
+        ),
+      );
+    }
+    contador++;
+  }
+
   return Container(
     height: 200,
     child: Stack(
@@ -22,7 +52,7 @@ Widget salesChart(BuildContext context, List<HomeSalesPaymentTypeModel> list) {
             children: [
               const SizedBox(height: 16.0),
               Text(
-                "R\$ 1.000,00",
+                "R\$ ${totalValue.toStringAsFixed(2)}",
                 style: Theme.of(context).textTheme.headline4!.copyWith(
                       color: Colors.blue,
                       fontWeight: FontWeight.w600,
@@ -38,36 +68,3 @@ Widget salesChart(BuildContext context, List<HomeSalesPaymentTypeModel> list) {
     ),
   );
 }
-
-List<PieChartSectionData> paiChartSelectionDatas = [
-  PieChartSectionData(
-    color: kPrimaryColor,
-    value: 25,
-    showTitle: true,
-    radius: 25,
-  ),
-  PieChartSectionData(
-    color: const Color(0xFF26E5FF),
-    value: 25,
-    showTitle: false,
-    radius: 25,
-  ),
-  PieChartSectionData(
-    color: const Color(0xFFFFCF26),
-    value: 10,
-    showTitle: false,
-    radius: 25,
-  ),
-  PieChartSectionData(
-    color: const Color(0xFFEE2727),
-    value: 15,
-    showTitle: false,
-    radius: 25,
-  ),
-  PieChartSectionData(
-    color: kPrimaryColor.withOpacity(0.1),
-    value: 25,
-    showTitle: false,
-    radius: 25,
-  ),
-];

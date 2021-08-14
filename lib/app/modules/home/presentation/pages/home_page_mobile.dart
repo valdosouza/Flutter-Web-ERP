@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/app/core/component/drawer_component.dart';
+
+import 'package:frontend/app/modules/drawer/presentation/drawer_page.dart';
 import 'package:frontend/app/modules/home/presentation/content/content_mobile.dart';
 
 class HomePageMobile extends StatelessWidget {
@@ -9,7 +10,7 @@ class HomePageMobile extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Aplicativo ERP"),
       ),
-      drawer: DrawerComponent(),
+      drawer: DrawerPage(),
       body: ContentMobile(),
     );
   }

@@ -7,8 +7,10 @@ class SplashCubit extends Cubit<SplashState> {
 
   Future<void> checkLogged() async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
-    //await sp.setString('token', '');
-    final bool result = sp.getString('token') != '';
+    final String token = sp.getString('token').toString();
+    print("tentando logar com o token $token");
+    final bool result = token.compareTo("") != 0;
+    print(result);
     emit(SplashState.logged(logged: result));
   }
 }

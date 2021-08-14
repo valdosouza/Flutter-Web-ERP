@@ -49,8 +49,9 @@ class AuthPage extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthErrorState) {
+          const String errorMsg = "Login ou senha inválidos";
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("Sending Message"),
+            content: Text(errorMsg),
           ));
         }
 

@@ -4,8 +4,9 @@ import 'package:frontend/app/modules/home/presentation/component/sales_payment_t
 
 Widget listSalesPaymentType(
     BuildContext context, List<HomeSalesPaymentTypeModel> list) {
+  final _mediaQueryData = MediaQuery.of(context);
   return Container(
-    height: 300,
+    height: _mediaQueryData.size.height - 300,
     child: ListView.builder(
       itemCount: list.length,
       itemBuilder: (context, index) {
