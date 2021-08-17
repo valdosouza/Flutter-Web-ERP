@@ -25,9 +25,9 @@ dependencies:
     sdk: flutter
   # Service locator
   get_it: ^6.0.0 
-  # create modules
-  #flutter_modular: ^3.3.0-nullsafety.3
+  # create modules  
   flutter_modular: ^3.3.1
+  
   # preferences
   shared_preferences: ^2.0.6
   #bloc

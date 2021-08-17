@@ -3,8 +3,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:frontend/app/modules/drawer/presentation/cubit/drawer_cubit.dart';
 
 class DrawerPage extends StatelessWidget {
-  final _drawerCubit = Modular.get<DrawerCubit>();
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -86,9 +84,9 @@ class DrawerPage extends StatelessWidget {
         child: InkWell(
             onTap: () async {
               print("Saindo - Logout");
-
+              final _drawerCubit = Modular.get<DrawerCubit>();
               await _drawerCubit.logOut();
-              await Modular.to.popAndPushNamed('/auth');
+              await Modular.to.popAndPushNamed('/auth/');
             },
             splashColor: Colors.orangeAccent,
             child: Container(

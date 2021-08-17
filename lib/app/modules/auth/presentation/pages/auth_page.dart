@@ -50,9 +50,11 @@ class AuthPage extends StatelessWidget {
       listener: (context, state) {
         if (state is AuthErrorState) {
           const String errorMsg = "Login ou senha inválidos";
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text(errorMsg),
-          ));
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text(errorMsg),
+            ),
+          );
         }
 
         if (state is AuthSuccessState) {

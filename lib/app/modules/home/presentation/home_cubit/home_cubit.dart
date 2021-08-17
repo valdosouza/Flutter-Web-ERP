@@ -6,15 +6,15 @@ import 'package:frontend/app/modules/home/presentation/home_cubit/home_state.dar
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  final GetFinancialClosedUseCase _getFinancialClosedUseCase;
+  final GetFinancialClosedUseCase getFinancialClosedUseCase;
 
-  HomeCubit(this._getFinancialClosedUseCase) : super(HomeInitial());
+  HomeCubit({required this.getFinancialClosedUseCase}) : super(HomeInitial());
 
   Future<void> getFinancialClosed(String initialDate, String finalDate) async {
     try {
       emit(HomeLoadingState());
 
-      final result = await _getFinancialClosedUseCase(
+      final result = await getFinancialClosedUseCase(
           Params(initialDate: initialDate, finalDate: finalDate));
       final List<HomeSalesPaymentTypeModel> list =
           (result as Right).value as List<HomeSalesPaymentTypeModel>;

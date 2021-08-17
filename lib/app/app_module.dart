@@ -26,29 +26,19 @@ class AppModule extends Module {
   // Provide a list of dependencies to inject into your project
   @override
   List<Bind> get binds => [
-        Bind(
-          (i) => DrawerCubit(),
-        )
+        Bind.singleton((i) => DrawerCubit()),
       ];
 
   // Provide all the routes for your module
   @override
   List<ModularRoute> get routes => [
         ModuleRoute('/', module: SplashModule()),
-        ModuleRoute(
-          '/drawer',
-          module: DrawerModule(),
-          //guards: [RouteValidate()],
-        ),
-        ModuleRoute(
-          '/auth',
-          module: AuthModule(),
-        ),
+        ModuleRoute('/drawer', module: DrawerModule()),
+        ModuleRoute('/auth', module: AuthModule()),
         ModuleRoute(
           '/home',
           module: HomeModule(),
           guards: [RouteValidate()],
-          guardedRoute: '/auth',
         ),
       ];
 }

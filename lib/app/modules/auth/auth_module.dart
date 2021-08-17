@@ -8,11 +8,11 @@ import 'package:frontend/app/modules/auth/presentation/pages/auth_page.dart';
 class AuthModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind.factory((i) => AuthDatasourceImpl()),
-        Bind.factory(
+        Bind.singleton((i) => AuthDatasourceImpl()),
+        Bind.singleton(
             (i) => AuthRepositoryImpl(datasource: i.get<AuthDatasourceImpl>())),
         Bind((i) => LoginEmail(repository: i.get<AuthRepositoryImpl>())),
-        Bind.factory((i) => AuthCubit(i())),
+        Bind.singleton((i) => AuthCubit(i())),
       ];
   @override
   final List<ModularRoute> routes = [

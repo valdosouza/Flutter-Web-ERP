@@ -4,20 +4,16 @@ import 'package:frontend/app/modules/splash/presentation/cubit/splash_cubit.dart
 
 class SplashPage extends StatelessWidget {
   SplashPage() {
-    final splashCubit = Modular.get<SplashCubit>();
-    splashCubit.checkLogged();
-
-    splashCubit.stream.listen((state) {
-      if (state.logged) {
-        print("logado");
-        Modular.to.popAndPushNamed('/home');
-      } else {
-        print("Não logado");
+    final pageCubit = Modular.get<SplashCubit>();
+    pageCubit.checkLogged();
+    pageCubit.stream.listen((state) {
+      if (!state.logged) {
         Modular.to.popAndPushNamed('/auth');
+      } else {
+        Modular.to.popAndPushNamed('/home');
       }
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Material(
