@@ -10,10 +10,12 @@ void main() {
     const HomeSalesPaymentTypeModel(
       paymentType: "1 - DINHEIRO",
       totalValue: 6466.52,
+      totalQtty: 2,
     ),
     const HomeSalesPaymentTypeModel(
       paymentType: "10 - ABRAPETITE",
       totalValue: 123.86,
+      totalQtty: 3,
     )
   ];
 
@@ -34,7 +36,8 @@ void main() {
       final result = (data as List).map((json) {
         return HomeSalesPaymentTypeModel(
           paymentType: json['description'].toString(),
-          totalValue: double.parse(json['ValorTotal'].toString()),
+          totalValue: double.parse(json['totalValue'].toString()),
+          totalQtty: int.parse(json['totalQtty'].toString()),
         );
       }).toList();
       // assert

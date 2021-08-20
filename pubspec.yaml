@@ -23,11 +23,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   # Service locator
   get_it: ^6.0.0 
   # create modules  
-  flutter_modular: ^3.3.1
-  
+  flutter_modular: ^3.4.0
+  intl: ^0.17.0
   # preferences
   shared_preferences: ^2.0.6
   #bloc
@@ -46,7 +48,7 @@ dependencies:
   crypto: ^3.0.1
   fl_chart: ^0.36.3
   flutter_svg: ^0.22.0
-  
+  auto_size_text: ^3.0.0-nullsafety.0
 
 dev_dependencies:
   flutter_test:

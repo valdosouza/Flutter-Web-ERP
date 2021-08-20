@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:frontend/app/modules/home/data/model/home_sales_payment_type_model.dart';
 import 'package:frontend/app/modules/home/domain/repositories/home_repository.dart';
 import 'package:frontend/app/modules/home/domain/usescases/get_financial_closed_usecase.dart';
-import 'package:frontend/app/modules/home/presentation/component/list_sales_payment_type.dart';
+
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
@@ -29,7 +29,8 @@ void main() {
   tLisTSalesPaymentTypesModel = (data as List).map((json) {
     return HomeSalesPaymentTypeModel(
       paymentType: json['description'].toString(),
-      totalValue: double.parse(json['ValorTotal'].toString()),
+      totalValue: double.parse(json['totalValue'].toString()),
+      totalQtty: int.parse(json['totalQtty'].toString()),
     );
   }).toList();
   tParams = const Params(

@@ -65,30 +65,24 @@ class AuthPage extends StatelessWidget {
         return Form(
           key: _form,
           child: Container(
-            height: double.infinity,
-            width: double.infinity,
             child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
+              //physics: const AlwaysScrollableScrollPhysics(),
               padding: const EdgeInsets.symmetric(
                 horizontal: 30.0,
-                vertical: 120.0,
+                //vertical: 120.0,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Image.asset(
                     "images/logo_setes.png",
-                    width: 450,
+                    width: 250,
                     height: 140,
-                    //fit: BoxFit.fill,
                   ),
                   if (state is AuthLoadingState)
                     const CircularProgressIndicator(),
                   const SizedBox(height: 30.0),
                   _buildEmail(),
-                  const SizedBox(
-                    height: 30.0,
-                  ),
                   _buildPassword(),
                   _buildRememberMeCheckbox(),
                   _buildLoginBtn(context),
@@ -102,84 +96,86 @@ class AuthPage extends StatelessWidget {
   }
 
   Widget _buildEmail() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const Text(
-          'Email',
-          style: kLabelStyle,
-        ),
-        const SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: TextFormField(
-            controller: loginController,
-            keyboardType: TextInputType.emailAddress,
-            autofocus: true,
-            textInputAction: TextInputAction.done,
-            style: const TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.email,
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const Text(
+            'Email',
+            style: kLabelStyle,
+          ),
+          const SizedBox(height: 10.0),
+          Container(
+            alignment: Alignment.centerLeft,
+            decoration: kBoxDecorationStyle,
+            child: TextFormField(
+              controller: loginController,
+              keyboardType: TextInputType.emailAddress,
+              autofocus: true,
+              textInputAction: TextInputAction.done,
+              style: const TextStyle(
                 color: Colors.white,
+                fontFamily: 'OpenSans',
               ),
-              hintText: 'Digite teu e-mail',
-              hintStyle: kHintTextStyle,
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(top: 14.0),
+                prefixIcon: Icon(
+                  Icons.email,
+                  color: Colors.white,
+                ),
+                hintText: 'Digite teu e-mail',
+                hintStyle: kHintTextStyle,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   Widget _buildPassword() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const Text(
-          'Senha',
-          style: kLabelStyle,
-        ),
-        const SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: TextFormField(
-            controller: passwordController,
-            keyboardType: TextInputType.visiblePassword,
-            textInputAction: TextInputAction.done,
-            obscureText: true,
-            style: const TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.lock,
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const SizedBox(height: 10.0),
+          const Text(
+            'Senha',
+            style: kLabelStyle,
+          ),
+          const SizedBox(height: 10.0),
+          Container(
+            alignment: Alignment.centerLeft,
+            decoration: kBoxDecorationStyle,
+            child: TextFormField(
+              controller: passwordController,
+              keyboardType: TextInputType.visiblePassword,
+              textInputAction: TextInputAction.done,
+              obscureText: true,
+              style: const TextStyle(
                 color: Colors.white,
+                fontFamily: 'OpenSans',
               ),
-              hintText: 'Digite tua senha',
-              hintStyle: kHintTextStyle,
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(top: 14.0),
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: Colors.white,
+                ),
+                hintText: 'Digite tua senha',
+                hintStyle: kHintTextStyle,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   Widget _buildRememberMeCheckbox() {
     return Container(
-      height: 40.0,
       child: Row(
         children: <Widget>[
           Checkbox(
@@ -189,7 +185,7 @@ class AuthPage extends StatelessWidget {
             onChanged: (value) {},
           ),
           const Text(
-            'Confio neste dispositivo. Manter conectado',
+            'Manter conectado',
             style: kLabelStyle,
           ),
         ],

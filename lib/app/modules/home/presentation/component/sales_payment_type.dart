@@ -34,7 +34,10 @@ class SalesPaymentType extends StatelessWidget {
             child: SizedBox(
               height: 20,
               width: 20,
-              child: SvgPicture.asset(svgSrc),
+              child: SvgPicture.asset(
+                svgSrc,
+                color: kPrimaryColor,
+              ),
             ),
           ),
           Expanded(
@@ -43,7 +46,10 @@ class SalesPaymentType extends StatelessWidget {
           ),
           Expanded(
             flex: 2,
-            child: Text("R\$ $saleValues "),
+            child: Text(
+              saleValues,
+              textAlign: TextAlign.right,
+            ),
           ),
         ],
       ),

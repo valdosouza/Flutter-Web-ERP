@@ -1,10 +1,13 @@
 [
     {
         "description": "1 - DINHEIRO",
-        "ValorTotal": "6466.52"
+        "totalValue": "6466.52",
+        "totalQtty":"2"
     },
     {
         "description": "10 - ABRAPETITE",
-        "ValorTotal": "123.86"
+        "totalValue": "123.86",
+        "totalQtty":"3"
+
     }   
 ]

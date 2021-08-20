@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:frontend/app/core/shared/theme.dart';
 
 import 'package:frontend/app/modules/home/data/model/home_sales_payment_type_model.dart';
+import 'package:intl/intl.dart';
 
 Widget salesChart(BuildContext context, List<HomeSalesPaymentTypeModel> list) {
-  List<PieChartSectionData> paiChartSelectionDatas = [];
+  // ignore: prefer_final_locals
+  late List<PieChartSectionData> paiChartSelectionDatas = [];
   double totalValue;
-
+  final brF = NumberFormat.currency(locale: "pt_BR", symbol: "R\$");
   final List colors = [
     kPrimaryColor,
     const Color(0xFF26E5FF),
@@ -21,6 +23,7 @@ Widget salesChart(BuildContext context, List<HomeSalesPaymentTypeModel> list) {
 
   for (HomeSalesPaymentTypeModel p in list) {
     totalValue = totalValue + p.totalValue;
+
     if (contador < 5) {
       paiChartSelectionDatas.add(
         PieChartSectionData(
@@ -52,7 +55,7 @@ Widget salesChart(BuildContext context, List<HomeSalesPaymentTypeModel> list) {
             children: [
               const SizedBox(height: 16.0),
               Text(
-                "R\$ ${totalValue.toStringAsFixed(2)}",
+                " ${brF.format(totalValue)}",
                 style: Theme.of(context).textTheme.headline4!.copyWith(
                       color: Colors.blue,
                       fontWeight: FontWeight.w600,

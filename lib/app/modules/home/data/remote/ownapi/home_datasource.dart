@@ -24,7 +24,7 @@ class HomeDatasourceImpl implements HomeDatasource {
   Future<List<HomeSalesPaymentTypeModel>> getFinancialClosed(
       {required String initialDate, required String finalDate}) async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
-    //final institution = sp.getString('institution');
+    final institution = sp.getString('institution') ?? 1223;
 
     final response = await client.post(
       Uri.parse(_baseUrl),
@@ -35,7 +35,7 @@ class HomeDatasourceImpl implements HomeDatasource {
         <String, String>{
           'initialDate': "$initialDate",
           'finalDate': "$finalDate",
-          'institution': "1223",
+          'institution': institution.toString(),
         },
       ),
     );
@@ -46,6 +46,7 @@ class HomeDatasourceImpl implements HomeDatasource {
           (data as List).map((json) {
         return HomeSalesPaymentTypeModel(
           paymentType: json['paymentType'].toString(),
+          totalQtty: int.parse(json['totalQtty'].toString()),
           totalValue: double.parse(json['totalValue'].toString()),
         );
       }).toList();
