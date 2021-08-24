@@ -1,6 +1,6 @@
+import 'package:erpgestao/app/modules/drawer/presentation/cubit/drawer_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:frontend/app/modules/drawer/presentation/cubit/drawer_cubit.dart';
 
 class DrawerPage extends StatelessWidget {
   @override

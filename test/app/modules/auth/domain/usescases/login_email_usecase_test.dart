@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:frontend/app/modules/auth/data/model/auth_model.dart';
-import 'package:frontend/app/modules/auth/domain/repositories/auth_repository.dart';
-import 'package:frontend/app/modules/auth/domain/usescases/login_email.dart';
+import 'package:erpgestao/app/modules/auth/data/model/auth_model.dart';
+import 'package:erpgestao/app/modules/auth/domain/repositories/auth_repository.dart';
+import 'package:erpgestao/app/modules/auth/domain/usescases/login_email.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'login_email_usecase_test.mocks.dart';

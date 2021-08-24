@@ -1,8 +1,7 @@
+import 'package:erpgestao/app/core/shared/theme.dart';
+import 'package:erpgestao/app/modules/home/data/model/home_sales_payment_type_model.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/app/core/shared/theme.dart';
-
-import 'package:frontend/app/modules/home/data/model/home_sales_payment_type_model.dart';
 import 'package:intl/intl.dart';
 
 Widget salesChart(BuildContext context, List<HomeSalesPaymentTypeModel> list) {

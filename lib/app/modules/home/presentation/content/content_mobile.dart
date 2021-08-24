@@ -1,15 +1,15 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:erpgestao/app/core/shared/theme.dart';
+import 'package:erpgestao/app/modules/home/presentation/component/average_ticket.dart';
+import 'package:erpgestao/app/modules/home/presentation/component/list_sales_payment_type.dart';
+import 'package:erpgestao/app/modules/home/presentation/component/sales_chart/sales_chart.dart';
+import 'package:erpgestao/app/modules/home/presentation/component/total_qtty.dart';
+import 'package:erpgestao/app/modules/home/presentation/component/total_value.dart';
+import 'package:erpgestao/app/modules/home/presentation/home_cubit/home_cubit.dart';
+import 'package:erpgestao/app/modules/home/presentation/home_cubit/home_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:frontend/app/core/shared/theme.dart';
-import 'package:frontend/app/modules/home/presentation/component/average_ticket.dart';
-import 'package:frontend/app/modules/home/presentation/component/list_sales_payment_type.dart';
-import 'package:frontend/app/modules/home/presentation/component/sales_chart/sales_chart.dart';
-import 'package:frontend/app/modules/home/presentation/component/total_qtty.dart';
-import 'package:frontend/app/modules/home/presentation/component/total_value.dart';
-import 'package:frontend/app/modules/home/presentation/home_cubit/home_cubit.dart';
-import 'package:frontend/app/modules/home/presentation/home_cubit/home_state.dart';
 import 'package:intl/intl.dart';
 
 class ContentMobile extends StatefulWidget {
@@ -18,16 +18,15 @@ class ContentMobile extends StatefulWidget {
 }
 
 class _ContentMobileState extends State<ContentMobile> {
-  late DateTimeRange dateRange = DateTimeRange(
-    start: DateTime.now(),
-    end: DateTime.now(),
-  );
+  late DateTime initialDate = DateTime.now();
+  late DateTime finalDate = DateTime.now();
+  String selectedTerminal = 'Todos';
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => Modular.get<HomeCubit>()
-        ..getFinancialClosed('2020-04-01', '2020-04-01'),
+        ..getFinancialClosed('2020-04-01', '2020-04-01', selectedTerminal),
       child: Container(
         child: SingleChildScrollView(
           child: _build(context),
@@ -36,80 +35,224 @@ class _ContentMobileState extends State<ContentMobile> {
     );
   }
 
-  Future pickDateRange(BuildContext context) async {
-    final initialDateRange = DateTimeRange(
-      start: DateTime.now(),
-      end: DateTime.now().add(const Duration(hours: 24 * 3)),
-    );
-    final newDateRange = await showDateRangePicker(
-      context: context,
-      firstDate: DateTime(DateTime.now().year - 5),
-      lastDate: DateTime(DateTime.now().year + 5),
-      initialDateRange: initialDateRange,
-    );
-    // ignore: always_put_control_body_on_new_line
-    if (newDateRange != null) dateRange = newDateRange;
+  String getFromInititalDate() {
+    return DateFormat('dd/MM/yyyy').format(initialDate);
   }
 
-  String getFrom() {
-    return DateFormat('yyyy-MM/dd').format(dateRange.start);
+  String getFromFinalDate() {
+    return DateFormat('dd/MM/yyyy').format(finalDate);
   }
 
-  String getUntil() {
-    return DateFormat('yyyy-MM/dd').format(dateRange.end);
+  Widget filterInititalDate(BuildContext context) {
+    return Row(
+      children: [
+        const AutoSizeText(
+          'Período: ',
+          minFontSize: 16,
+          maxFontSize: 20,
+          maxLines: 1,
+          textAlign: TextAlign.left,
+          style: TextStyle(
+            fontSize: 20.0,
+          ),
+        ),
+        const SizedBox(width: 10),
+        AutoSizeText(
+          getFromInititalDate(),
+          minFontSize: 14,
+          maxFontSize: 18,
+          maxLines: 1,
+          textAlign: TextAlign.left,
+          style: const TextStyle(
+            fontSize: 18.0,
+          ),
+        ),
+        const SizedBox(width: 10),
+        ElevatedButton(
+          child: const Icon(
+            Icons.calendar_today,
+            color: Colors.blue,
+          ),
+          style: ElevatedButton.styleFrom(
+            primary: Colors.white,
+          ),
+          onPressed: () {
+            showDatePicker(
+                    context: context,
+                    initialDate: initialDate,
+                    firstDate: DateTime(2001),
+                    lastDate: DateTime(2023))
+                .then((date) {
+              setState(() {
+                initialDate = date!;
+              });
+            });
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget filterFinalDate(BuildContext context) {
+    return Row(
+      children: [
+        AutoSizeText(
+          getFromFinalDate(),
+          minFontSize: 14,
+          maxFontSize: 18,
+          maxLines: 1,
+          textAlign: TextAlign.left,
+          style: const TextStyle(
+            fontSize: 18.0,
+          ),
+        ),
+        const SizedBox(width: 10),
+        ElevatedButton(
+          child: const Icon(
+            Icons.calendar_today,
+            color: Colors.blue,
+          ),
+          style: ElevatedButton.styleFrom(
+            primary: Colors.white,
+          ),
+          onPressed: () {
+            showDatePicker(
+                    context: context,
+                    initialDate: finalDate,
+                    firstDate: DateTime(2001),
+                    lastDate: DateTime(2023))
+                .then((date) {
+              setState(() {
+                finalDate = date!;
+              });
+            });
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget filterFirstLine(BuildContext context) {
+    return Row(
+      children: [
+        filterInititalDate(context),
+        filterFinalDate(context),
+      ],
+    );
+  }
+
+  Widget filterTerminalList(BuildContext context) {
+    return Row(
+      children: [
+        const AutoSizeText(
+          'Terminal: ',
+          minFontSize: 16,
+          maxFontSize: 20,
+          maxLines: 1,
+          textAlign: TextAlign.left,
+          style: TextStyle(
+            fontSize: 20.0,
+          ),
+        ),
+        DropdownButton<String>(
+          value: selectedTerminal,
+          onChanged: (String? newValue) {
+            setState(() {
+              selectedTerminal = newValue!;
+            });
+          },
+          items: <String>[
+            'Todos',
+            'Terminal 01',
+            'Terminal 02',
+            'Terminal 03',
+            'Terminal 04'
+          ].map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+        ),
+      ],
+    );
+  }
+
+  Widget filterButton(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        primary: Colors.lightGreen,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(18.0),
+        ),
+      ),
+      onPressed: () => context.read<HomeCubit>().getFinancialClosed(
+            DateFormat('yyyy-MM-dd').format(initialDate),
+            DateFormat('yyyy-MM-dd').format(finalDate),
+            selectedTerminal,
+          ),
+      child: const Text(
+        'Filtrar',
+        style: TextStyle(
+          color: Color(0xFF527DAA),
+          letterSpacing: 1.5,
+          fontSize: 18.0,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'OpenSans',
+        ),
+      ),
+    );
+  }
+
+  Widget filterSecondLine(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          height: 50,
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+          alignment: Alignment.centerLeft,
+          child: filterTerminalList(context),
+        ),
+        Container(
+          height: 50,
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+          alignment: Alignment.centerLeft,
+          child: filterButton(context),
+        ),
+      ],
+    );
   }
 
   Widget filter(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 2,
+          color: kPrimaryColor.withOpacity(0.15),
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(kDefaultPadding),
+        ),
+      ),
       alignment: Alignment.topRight,
       margin: const EdgeInsets.symmetric(
         vertical: 5,
         horizontal: 10,
       ),
       padding: const EdgeInsets.symmetric(vertical: 10.0),
-      child: Row(
+      child: Column(
         children: [
-          Expanded(
-              flex: 2,
-              child: Container(
-                height: 50,
-                child: Column(
-                  children: [
-                    AutoSizeText(
-                      'Período: ${DateFormat('dd/MM/yyyy').format(dateRange.start)} à ${DateFormat('dd/MM/yyyy').format(dateRange.end)}',
-                      minFontSize: 14,
-                      maxFontSize: 18,
-                      maxLines: 1,
-                      style: const TextStyle(
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ],
-                ),
-              )),
-          Expanded(
-            flex: 1,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.lightGreen,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0),
-                ),
-              ),
-              onPressed: () async {
-                await pickDateRange(context);
-                await context
-                    .read<HomeCubit>()
-                    .getFinancialClosed(getFrom(), getUntil());
-              },
-              child: const Text(
-                'Filtrar',
-                style: TextStyle(
-                  letterSpacing: 1.5,
-                  fontSize: 18.0,
-                ),
-              ),
-            ),
+          Container(
+            height: 50,
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+            alignment: Alignment.centerLeft,
+            child: filterFirstLine(context),
+          ),
+          Container(
+            height: 50,
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+            alignment: Alignment.centerLeft,
+            child: filterSecondLine(context),
           ),
         ],
       ),
@@ -156,7 +299,6 @@ class _ContentMobileState extends State<ContentMobile> {
       builder: (context, state) {
         if (state is HomeLoadedState) {
           final list = state.homeSalesPaymentTypeModel;
-
           return Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,

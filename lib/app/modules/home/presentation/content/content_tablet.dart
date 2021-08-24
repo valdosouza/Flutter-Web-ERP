@@ -1,6 +1,5 @@
+import 'package:erpgestao/app/modules/home/presentation/component/header.dart';
 import 'package:flutter/material.dart';
-
-import 'package:frontend/app/modules/home/presentation/component/header.dart';
 
 class ContentTablet extends StatelessWidget {
   @override

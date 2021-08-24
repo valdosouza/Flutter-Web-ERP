@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/app/modules/drawer/presentation/drawer_page.dart';
+import 'package:erpgestao/app/modules/drawer/presentation/drawer_page.dart';
 
-import 'package:frontend/app/modules/home/presentation/component/items_menus.dart';
-import 'package:frontend/app/modules/home/presentation/content/content_desktop.dart';
+import 'package:erpgestao/app/modules/home/presentation/component/items_menus.dart';
+import 'package:erpgestao/app/modules/home/presentation/content/content_desktop.dart';
 
 class HomePageDesktop extends StatelessWidget {
   @override

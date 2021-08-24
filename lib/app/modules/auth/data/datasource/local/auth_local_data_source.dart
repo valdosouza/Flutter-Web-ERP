@@ -1,5 +1,5 @@
-import 'package:frontend/app/core/error/exceptions.dart';
-import 'package:frontend/app/modules/auth/data/model/auth_model.dart';
+import 'package:erpgestao/app/core/error/exceptions.dart';
+import 'package:erpgestao/app/modules/auth/data/model/auth_model.dart';
 
 abstract class AuthLocalDatasource {
   /// Gets the cached [AuthModel] which was gotten the last time

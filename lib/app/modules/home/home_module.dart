@@ -1,11 +1,9 @@
+import 'package:erpgestao/app/modules/home/data/remote/ownapi/home_datasource.dart';
+import 'package:erpgestao/app/modules/home/data/repositories/home_repository_impl.dart';
+import 'package:erpgestao/app/modules/home/domain/usescases/get_financial_closed_usecase.dart';
+import 'package:erpgestao/app/modules/home/presentation/home_cubit/home_cubit.dart';
+import 'package:erpgestao/app/modules/home/presentation/pages/home_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
-import 'package:frontend/app/modules/home/data/remote/ownapi/home_datasource.dart';
-import 'package:frontend/app/modules/home/data/repositories/home_repository_impl.dart';
-import 'package:frontend/app/modules/home/domain/usescases/get_financial_closed_usecase.dart';
-import 'package:frontend/app/modules/home/presentation/home_cubit/home_cubit.dart';
-
-import 'package:frontend/app/modules/home/presentation/pages/home_page.dart';
 
 class HomeModule extends Module {
   @override

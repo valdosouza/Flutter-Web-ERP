@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:frontend/app/modules/home/data/model/home_sales_payment_type_model.dart';
+import 'package:erpgestao/app/modules/home/data/model/home_sales_payment_type_model.dart';
 
 abstract class HomeState extends Equatable {
   const HomeState();

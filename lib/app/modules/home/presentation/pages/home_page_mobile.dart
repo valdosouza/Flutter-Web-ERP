@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/app/modules/drawer/presentation/drawer_page.dart';
-import 'package:frontend/app/modules/home/presentation/content/content_mobile.dart';
+import 'package:erpgestao/app/modules/drawer/presentation/drawer_page.dart';
+import 'package:erpgestao/app/modules/home/presentation/content/content_mobile.dart';
 
 class HomePageMobile extends StatelessWidget {
   @override

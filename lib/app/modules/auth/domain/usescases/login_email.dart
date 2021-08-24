@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:frontend/app/core/error/exceptions.dart';
-import 'package:frontend/app/core/error/failures.dart';
-import 'package:frontend/app/core/usecase/usecase.dart';
-import 'package:frontend/app/modules/auth/data/model/auth_model.dart';
-import 'package:frontend/app/modules/auth/domain/repositories/auth_repository.dart';
+import 'package:erpgestao/app/core/error/exceptions.dart';
+import 'package:erpgestao/app/core/error/failures.dart';
+import 'package:erpgestao/app/core/usecase/usecase.dart';
+import 'package:erpgestao/app/modules/auth/data/model/auth_model.dart';
+import 'package:erpgestao/app/modules/auth/domain/repositories/auth_repository.dart';
 
 class LoginEmail implements UseCase<AuthModel, Params> {
   final AuthRepository repository;

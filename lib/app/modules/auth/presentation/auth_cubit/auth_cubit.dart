@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:erpgestao/app/core/error/exceptions.dart';
+import 'package:erpgestao/app/modules/auth/data/model/auth_model.dart';
+import 'package:erpgestao/app/modules/auth/domain/usescases/login_email.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:frontend/app/core/error/exceptions.dart';
-import 'package:frontend/app/modules/auth/data/model/auth_model.dart';
-import 'package:frontend/app/modules/auth/domain/usescases/login_email.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_state.dart';

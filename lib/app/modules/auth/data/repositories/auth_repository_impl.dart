@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 import 'package:dartz/dartz.dart';
-import 'package:frontend/app/core/error/exceptions.dart';
+import 'package:erpgestao/app/core/error/exceptions.dart';
 
-import 'package:frontend/app/core/error/failures.dart';
-import 'package:frontend/app/modules/auth/data/datasource/remote/ownapi/auth_datasource.dart';
-import 'package:frontend/app/modules/auth/data/model/auth_model.dart';
-import 'package:frontend/app/modules/auth/domain/repositories/auth_repository.dart';
+import 'package:erpgestao/app/core/error/failures.dart';
+import 'package:erpgestao/app/modules/auth/data/datasource/remote/ownapi/auth_datasource.dart';
+import 'package:erpgestao/app/modules/auth/data/model/auth_model.dart';
+import 'package:erpgestao/app/modules/auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthDatasource datasource;

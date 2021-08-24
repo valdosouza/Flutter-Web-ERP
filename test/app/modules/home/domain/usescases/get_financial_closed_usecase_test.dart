@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:frontend/app/modules/home/data/model/home_sales_payment_type_model.dart';
-import 'package:frontend/app/modules/home/domain/repositories/home_repository.dart';
-import 'package:frontend/app/modules/home/domain/usescases/get_financial_closed_usecase.dart';
+import 'package:erpgestao/app/modules/home/data/model/home_sales_payment_type_model.dart';
+import 'package:erpgestao/app/modules/home/domain/repositories/home_repository.dart';
+import 'package:erpgestao/app/modules/home/domain/usescases/get_financial_closed_usecase.dart';
 
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

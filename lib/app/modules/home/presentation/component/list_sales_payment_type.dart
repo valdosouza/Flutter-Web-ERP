@@ -1,6 +1,6 @@
+import 'package:erpgestao/app/modules/home/data/model/home_sales_payment_type_model.dart';
+import 'package:erpgestao/app/modules/home/presentation/component/sales_payment_type.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:frontend/app/modules/home/data/model/home_sales_payment_type_model.dart';
-import 'package:frontend/app/modules/home/presentation/component/sales_payment_type.dart';
 import 'package:intl/intl.dart';
 
 Widget listSalesPaymentType(

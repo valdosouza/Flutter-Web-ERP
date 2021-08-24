@@ -1,5 +1,5 @@
-name: frontend
-description: A new Flutter project.
+name: erpgestao
+description: Sistema de Gestão Empresarial.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -49,7 +49,7 @@ dependencies:
   fl_chart: ^0.36.3
   flutter_svg: ^0.22.0
   auto_size_text: ^3.0.0-nullsafety.0
-
+  direct_select_flutter: ^1.1.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

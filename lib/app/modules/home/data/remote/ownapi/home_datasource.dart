@@ -1,10 +1,7 @@
 import 'dart:convert';
-
-import 'package:frontend/app/core/error/exceptions.dart';
-
-import 'package:frontend/app/core/shared/constants.dart';
-
-import 'package:frontend/app/modules/home/data/model/home_sales_payment_type_model.dart';
+import 'package:erpgestao/app/core/error/exceptions.dart';
+import 'package:erpgestao/app/core/shared/constants.dart';
+import 'package:erpgestao/app/modules/home/data/model/home_sales_payment_type_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,7 +10,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// Throws a [ServerException] for all error codes.
 abstract class HomeDatasource {
   Future<List<HomeSalesPaymentTypeModel>> getFinancialClosed(
-      {required String initialDate, required String finalDate});
+      {required String initialDate,
+      required String finalDate,
+      required String terminal});
 }
 
 class HomeDatasourceImpl implements HomeDatasource {
@@ -22,7 +21,9 @@ class HomeDatasourceImpl implements HomeDatasource {
   //List<HomeSalesPaymentTypeModel> homeSalesPaymentTypesModel = [];
   @override
   Future<List<HomeSalesPaymentTypeModel>> getFinancialClosed(
-      {required String initialDate, required String finalDate}) async {
+      {required String initialDate,
+      required String finalDate,
+      required String terminal}) async {
     final SharedPreferences sp = await SharedPreferences.getInstance();
     final institution = sp.getString('institution') ?? 1223;
 
@@ -35,7 +36,8 @@ class HomeDatasourceImpl implements HomeDatasource {
         <String, String>{
           'initialDate': "$initialDate",
           'finalDate': "$finalDate",
-          'institution': institution.toString(),
+          'institution': "${institution.toString()}",
+          'terminal': "$terminal",
         },
       ),
     );

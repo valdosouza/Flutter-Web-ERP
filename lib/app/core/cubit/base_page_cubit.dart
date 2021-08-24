@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:frontend/app/core/cubit/base_page_state.dart';
+import 'package:erpgestao/app/core/cubit/base_page_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BasePageCubit extends Cubit<BasePageState> {

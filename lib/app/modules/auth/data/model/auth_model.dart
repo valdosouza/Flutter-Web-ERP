@@ -1,4 +1,4 @@
-import 'package:frontend/app/modules/auth/domain/entities/auth_entity.dart';
+import 'package:erpgestao/app/modules/auth/domain/entities/auth_entity.dart';
 
 class AuthModel extends AuthEntity {
   const AuthModel({
