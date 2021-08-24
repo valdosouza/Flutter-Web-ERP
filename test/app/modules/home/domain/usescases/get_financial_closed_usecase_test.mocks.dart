@@ -30,11 +30,17 @@ class MockHomeRepository extends _i1.Mock implements _i3.HomeRepository {
 
   @override
   _i4.Future<_i2.Either<_i5.Failure, List<_i6.HomeSalesPaymentTypeModel>>>
-      getFinancialClosed({String? initialDate, String? finalDate}) => (super.noSuchMethod(
-          Invocation.method(#getFinancialClosed, [],
-              {#initialDate: initialDate, #finalDate: finalDate}),
-          returnValue:
-              Future<_i2.Either<_i5.Failure, List<_i6.HomeSalesPaymentTypeModel>>>.value(
-                  _FakeEither<_i5.Failure, List<_i6.HomeSalesPaymentTypeModel>>())) as _i4
-          .Future<_i2.Either<_i5.Failure, List<_i6.HomeSalesPaymentTypeModel>>>);
+      getFinancialClosed({
+    String? initialDate,
+    String? finalDate,
+    String? terminal,
+  }) =>
+          (super.noSuchMethod(
+              Invocation.method(#getFinancialClosed, [],
+                  {#initialDate: initialDate, #finalDate: finalDate}),
+              returnValue:
+                  Future<_i2.Either<_i5.Failure, List<_i6.HomeSalesPaymentTypeModel>>>.value(
+                      _FakeEither<_i5.Failure,
+                          List<_i6.HomeSalesPaymentTypeModel>>())) as _i4
+              .Future<_i2.Either<_i5.Failure, List<_i6.HomeSalesPaymentTypeModel>>>);
 }

@@ -1,6 +1,6 @@
+import 'package:erpgestao/app/modules/splash/presentation/cubit/splash_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:erpgestao/app/modules/splash/presentation/cubit/splash_cubit.dart';
 
 class SplashPage extends StatelessWidget {
   SplashPage() {

@@ -1,5 +1,4 @@
 import 'package:erpgestao/app/modules/auth/auth_module.dart';
-import 'package:erpgestao/app/modules/drawer/drawer_module.dart';
 import 'package:erpgestao/app/modules/drawer/presentation/cubit/drawer_cubit.dart';
 import 'package:erpgestao/app/modules/home/home_module.dart';
 import 'package:erpgestao/app/modules/splash/splash_module.dart';
@@ -33,7 +32,7 @@ class AppModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ModuleRoute('/', module: SplashModule()),
-        ModuleRoute('/drawer', module: DrawerModule()),
+        //ModuleRoute('/drawer', module: DrawerModule()),
         ModuleRoute('/auth', module: AuthModule()),
         ModuleRoute('/home', module: HomeModule()),
       ];

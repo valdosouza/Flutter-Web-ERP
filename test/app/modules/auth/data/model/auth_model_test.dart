@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter_test/flutter_test.dart';
 import 'package:erpgestao/app/modules/auth/data/model/auth_model.dart';
 import 'package:erpgestao/app/modules/auth/domain/entities/auth_entity.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../../fixtures/fixture_reader.dart';
 
